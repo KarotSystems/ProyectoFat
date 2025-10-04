@@ -7,6 +7,30 @@ def crear_carpeta(nombre):
 def crear_archivo(nombre):
     pass
 
+def Listar_archivos(nombre):
+    pass
+
+def Mostrar_papelera(nombre):
+    pass
+
+def abrir_archivo(nombre):
+    pass
+
+def Modificar_archivo(nombre):
+    pass
+
+def mover_a_papelera(nombre):
+    pass
+
+def Recuperar_desde_papelera(nombre):
+    pass
+
+def Asignar_permisos(nombre):
+    pass
+
+def Crear_nuevo_usuario(nombre):
+    pass
+
 while True:
     print("\n--- Menú ---")
     print("1. Crear archivo")
