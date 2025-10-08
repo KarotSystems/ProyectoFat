@@ -1,20 +1,56 @@
-import os, shutil, time, json
+import os, shutil, json
 from datetime import datetime
 
 def crear_carpeta(nombre):
-    pass
+    if not os.path.exists("fat_storage"):
+        os.makedirs("fat_storage/")
+        with open(f"fat_storage/{nombre}", "w") as f:
+            json.dump({"files": {}}, f, indent=4)
+        print("Estructura FAT creada.")
 
 def crear_archivo(nombre):
-    pass
+    if os.path.exists(f"fat_storage/{nombre}"):
+        with open(f"fat_storage/{nombre}", "r") as f:
+            print("\nContenido actual:\n", f.read())
+    else:
+        with open(f"fat_storage/{nombre}", "w") as f:
+            print("Escribe el texto (finaliza con 'FIN'): ")
+            texto = []
+            while True:
+                contenido = input()
+                if contenido == "FIN":
+                    break
+            texto.append(contenido + "\n")
+            f.writelines(texto)
 
-def Listar_archivos(nombre):
-    pass
+    print(f"Archivo '{nombre}' creado con éxito.")
 
-def Mostrar_papelera(nombre):
-    pass
+def Listar_archivos():
+    with open(f"fat_storage/{nombre}", "r") as f:
+        fat = json.load(f)
+
+    print("\n=== Archivos activos ===")
+    for archivo, datos in fat["files"].items():
+        if not datos["papelera"]:
+            print(f"{archivo} | Tamaño: {datos['size']} | Owner: {datos['owner']}")
+
+def Mostrar_papelera():
+    with open(f"fat_storage/{nombre}", "r") as f:
+        fat = json.load(f)
+
+    print("\n=== Papelera ===")
+    for archivo, datos in fat["files"].items():
+        if datos["papelera"]:
+            print(f"{archivo} | Eliminado: {datos['deleted']}")
 
 def abrir_archivo(nombre):
-    pass
+    with open(f"fat_storage/{nombre}", "r") as f:
+        fat = json.load(f)
+        
+    print("\n=== Archivos activos ===")
+    for archivo, datos in fat["files"].items():
+        if not datos["papelera"]:
+            print(f"{archivo} | Tamaño: {datos['size']} | Owner: {datos['owner']}")
 
 def Modificar_archivo(nombre):
     pass
