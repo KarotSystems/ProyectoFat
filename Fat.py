@@ -1,12 +1,36 @@
-import os, shutil, json
+import os, json
 from datetime import datetime
 
-def crear_carpeta(nombre):
-    if not os.path.exists("fat_storage"):
-        os.makedirs("fat_storage/")
-        with open(f"fat_storage/{nombre}", "w") as f:
+#Inicialización
+os.makedirs("fat_storage", exist_ok=True)
+os.makedirs("blocks", exist_ok=True)
+Fat_Destino = "fat_storage/fat.json"
+
+#Inicializar tabla FAT si no existe
+def crear_carpeta():
+    if not os.path.exists(Fat_Destino):
+        with open(Fat_Destino, "w") as f:
             json.dump({"files": {}}, f, indent=4)
-        print("Estructura FAT creada.")
+
+#Usuario actual (puedes cambiarlo para pruebas)
+Usuario = "admin"
+
+def segmentar_bloques(texto, nombre_archivo):
+    bloques = [texto[i:i+20] for i in range(0, len(texto), 20)]
+    rutas = []
+    os.makedirs("blocks", exist_ok=True)
+
+    for i, bloque in enumerate(bloques):
+        ruta = f"blocks/{nombre_archivo}_block{i}.json"
+        rutas.append(ruta)
+        with open(ruta, "w") as f:
+            json.dump({
+                "datos": bloque,
+                "siguiente": None if i == len(bloques)-1 else f"blocks/{nombre_archivo}_block{i+1}.json",
+                "eof": i == len(bloques)-1
+            }, f, indent=4)
+
+    return rutas[0]  # ruta inicial
 
 def crear_archivo(nombre):
     if os.path.exists(f"fat_storage/{nombre}"):
