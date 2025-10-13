@@ -97,7 +97,7 @@ def abrir_archivo(nombre):
         return
 
     #Valida los permisos del usuario
-    if usuario not in datos["permisos"] or "lectura" not in datos["permisos"][usuario]:
+    if Usuario not in datos["permisos"] or "lectura" not in datos["permisos"][Usuario]:
         print("No tienes permiso de lectura.")
         return
 
@@ -125,7 +125,7 @@ def Modificar_archivo(nombre):
         return
 
     #Valida los permisos del usuario
-    if usuario not in datos["permisos"] or "escritura" not in datos["permisos"][usuario]:
+    if Usuario not in datos["permisos"] or "escritura" not in datos["permisos"][Usuario]:
         print("No tienes permiso de escritura.")
         return
 
@@ -217,6 +217,7 @@ while True:
     opcion = input("Elige una opción: ")
 
     if opcion == "1":
+        crear_carpeta()
         nombre = input("Nombre del archivo: ")
         crear_archivo(nombre)
     elif opcion == "2":
