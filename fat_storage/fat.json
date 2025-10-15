@@ -3,9 +3,9 @@
         "Prueba3": {
             "ruta_inicial": "blocks/Prueba3_block0.json",
             "papelera": false,
-            "size": 46,
+            "size": 64,
             "created": "2025-10-12 18:41",
-            "modified": null,
+            "modified": "2025-10-14 17:25",
             "deleted": null,
             "owner": "admin",
             "permisos": {
@@ -35,6 +35,21 @@
             "papelera": false,
             "size": 64,
             "created": "2025-10-12 18:45",
+            "modified": null,
+            "deleted": null,
+            "owner": "admin",
+            "permisos": {
+                "admin": [
+                    "lectura",
+                    "escritura"
+                ]
+            }
+        },
+        "Entrega": {
+            "ruta_inicial": "blocks/Entrega_block0.json",
+            "papelera": false,
+            "size": 53,
+            "created": "2025-10-14 17:21",
             "modified": null,
             "deleted": null,
             "owner": "admin",
