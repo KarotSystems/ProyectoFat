@@ -42,6 +42,9 @@
                 "admin": [
                     "lectura",
                     "escritura"
+                ],
+                "pedro": [
+                    "lectura"
                 ]
             }
         },
